@@ -53,8 +53,16 @@ class Mahasiswa extends CI_Controller {
       $nama = $this->input->POST('nama');
 
 
-      $this->mahasiswa->tambah($nim, $nama);
-      redirect('mahasiswa');
+      $query =  $this->mahasiswa->tambah($nim, $nama);
+
+      if ($query) {
+        $this->session->set_flashdata('notification', 'Data berhasil ditambahkan');
+        redirect('mahasiswa');
+      } else {
+        $this->session->set_flashdata('err_notification', 'Data gagal ditambahkan');
+        redirect('mahasiswa/formAdd');
+      }
+      
     }
   }
   
