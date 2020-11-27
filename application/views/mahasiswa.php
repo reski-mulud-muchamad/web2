@@ -27,9 +27,9 @@
             <td><?= $mhs['nama'] ?></td>
             <td><a href="<?= site_url('mahasiswa/detail/') . $mhs['id'] ?>" class="badge badge-success">
                     <span class="fas fa-fw fa-info"></span>DETAIL
-                </a> | <a href="<?= site_url('mahasiswa/delete/') . $mhs['id']; ?>"
-                    onclick="confirm('apakah kamu yakin?')" class="badge badge-primary">EDIT</a> | <a href=""
-                    class="badge badge-danger">DELETE</a></td>
+                </a> | <a href="<?= site_url('mahasiswa/update/') . $mhs['id']; ?>" class="badge badge-primary">EDIT</a>
+                | <a href="<?= site_url('mahasiswa/delete/') . $mhs['id']; ?>"
+                    onclick="return confirm('apakah kamu yakin?')" class="badge badge-danger">DELETE</a> </td>
         </tr>
 
         <?php endforeach; ?>

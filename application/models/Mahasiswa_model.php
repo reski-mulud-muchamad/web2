@@ -47,6 +47,12 @@ class Mahasiswa_model extends CI_Model {
     return $query;
   }
 
+  public function update($id, $data)
+  {
+    $this->db->where('id', $id);
+    return $this->db->update('mahasiswa', $data);
+  }
+
   public function delete($id)
   {
     $this->db->where('id', $id);

@@ -65,5 +65,45 @@ class Mahasiswa extends CI_Controller {
       
     }
   }
+
+  public function update($id)
+  {
+    $data['title'] = 'Ubah Mahasiswa';
+    
+    $this->form_validation->set_rules('nim', 'NIM', 'required');
+    $this->form_validation->set_rules('nama', 'Nama', 'required');
+
+    $data['mahasiswa'] = $this->db->get_where('mahasiswa', ['id' => $id])->row_array();
+
+    if ($this->form_validation->run() == FALSE) {
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/navbar', $data);
+      $this->load->view('formEdit', $data);
+      $this->load->view('templates/footer', $data);
+    } else {
+      $data   = [
+        'nim'  => $this->input->POST('nim'),
+        'nama' => $this->input->POST('nama')
+      ];
+      
+      $query =  $this->mahasiswa->update($id, $data);
+
+      if ($query) {
+        $this->session->set_flashdata('notification', 'Data berhasil diupdate');
+        redirect('mahasiswa');
+      } else {
+        $this->session->set_flashdata('err_notification', 'Data gagal diupdate');
+        redirect('mahasiswa/formEdit');
+      }
+      
+    }
+  }
+
+  public function delete($id)
+  {
+    $this->mahasiswa->delete($id);
+    $this->session->set_flashdata('notification', 'Data berhasil dihapus');
+    redirect('mahasiswa');
+  }
   
 }
