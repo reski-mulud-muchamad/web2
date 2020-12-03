@@ -19,10 +19,10 @@
 
         <?php if (is_array($mahasiswa) && count($mahasiswa)) : ?>
 
+        <?php $i = 1 ?>
         <?php foreach ($mahasiswa as $mhs) : ?>
-
         <tr align="center">
-            <td><?= $mhs['id'] ?></td>
+            <td><?= $i++ ?></td>
             <td><?= $mhs['nim'] ?></td>
             <td><?= $mhs['nama'] ?></td>
             <td><a href="<?= site_url('mahasiswa/detail/') . $mhs['id'] ?>" class="badge badge-success">
